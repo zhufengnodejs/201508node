@@ -1,6 +1,14 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 .ide
 =======
 node_modules
 .idea
 >>>>>>> 813ae38100232dab0e58dd75d385853fb699fae9
+=======
+123/*.css
+=======
+node_modules
+.idea
+>>>>>>> fd54ebbe1bffc614472ebaa60c8bfeacd4546065
+>>>>>>> 29544be87073bb008dc4381aec77690cb4968c44
