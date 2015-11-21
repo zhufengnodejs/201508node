@@ -29,8 +29,10 @@ var person = function(request,response){
       //2.替换字符串再响应回去
         response.setHeader('Content-Type','text/html;charset=utf-8');
         var content = fs.readFileSync('menu.html','utf8');
-        content = content.replace('@@@@@@',makeMenu());
-        response.end(content);
+        var result  =  ejs.render(content,{memu:makeMenu()},{});
+        console.log(result);
+        //content = content.replace('@@@@@@',makeMenu());
+        response.end(result);
     }else if(urlObj.pathname.indexOf('/ss')==0){
         response.setHeader('Content-Type','text/html;charset=utf-8');
         response.end('客官，一'+urlObj.query.unit+urlObj.pathname.slice(4));
