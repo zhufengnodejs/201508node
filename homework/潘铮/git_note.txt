@@ -1,0 +1,29 @@
+1.注册自己的账号
+2. fork老师的的项目
+3. 克隆自己的项目
+4. 进入项目文件夹
+5.在homework 下建立自己名字的文件夹，并添加readme.md文件。
+6.git add -A 
+7.git commit -m"提交到历史区"
+8.git push origin master 提交到 github上
+
+
+*****************************
+
+1.注册自己的账号
+2. fork老师的的项目
+3. 克隆自己的项目
+4. 进入项目文件夹
+5.在homework 下建立自己名字的文件夹，并添加readme.md文件。
+6.git add -A 
+7.git commit -m"提交到历史区"
+8.git push origin master 提交到 github上
+9.发起一个pull request
+10.老师合并代码
+
+
+****************************
+
+git remote add teacher https://github.com/zhufengnodejs/201508node.git
+git pull teacher master
+git push origin master
