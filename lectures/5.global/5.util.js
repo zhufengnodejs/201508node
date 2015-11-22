@@ -25,7 +25,7 @@ function Person(){
         grandson:{
             name:'grandson'
         }
-    }
+    };
     /*this.toString = function(){
         return this.name;
     }*/
