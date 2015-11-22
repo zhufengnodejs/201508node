@@ -1,0 +1,16 @@
+{
+  "name": "7.module",
+  "version": "1.0.0",
+  "description": "项目的用途",
+  "main": "home.js",
+  "repository":"https://github.com/broofa/node-mime",
+  "dependencies": {
+    "mime":"*"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zfpx",
+  "license": "ISC"
+}
