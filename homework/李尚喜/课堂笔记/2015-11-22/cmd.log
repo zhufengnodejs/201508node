@@ -1,0 +1,7 @@
+[1,2,3,4].map(function(){
+console.log()
+[1,2,3,4,5,6].map(function(){
+console.log(item*2)
+[1,2,3,4].map(function(item){
+console.log(item*2);
+})
