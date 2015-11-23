@@ -45,11 +45,12 @@ console.log(buf);
 
 // buffer字符串如何转化
 var buf = new Buffer('珠峰培训');
-console.log(buf.toString());//转成字符串
+console.log(buf.toString()+'====================================');//转成字符串
 
 var buf = new Buffer(12);
 buf.write("珠峰",0,6,'utf8');
 buf.write("培训",6,3);
+
 console.log(buf.toString());
 
 var buf = new Buffer('珠峰培训');
