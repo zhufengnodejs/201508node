@@ -1,6 +1,7 @@
 //一个开店指南
 var http = require('http');//需要一个模块，加载 一个模块
 var url = require('url');
+console.log(url)
 /**
  *
  * @param request 请求对象
@@ -30,7 +31,7 @@ var person = function(request,response){
 //装修一个自己的分店
 var server = http.createServer(person);
 //开店营业，告诉别人自己的IP和端口
-server.listen(8080,'localhost',function(){
+server.listen(8090,'localhost',function(){
     console.log('服务已启动');
 });
 
@@ -41,3 +42,6 @@ server.listen(8080,'localhost',function(){
  pathname: '/huiyuan',路径名
  path: '/huiyuan?unit=ping',
  **/
+
+var fs = require('fs');
+console.log(fs);

@@ -9,12 +9,14 @@ var count = 0;
 fs.readFile('./fish','utf8',function(err,data){
   console.log(1,'fish');
     if(++count==2){
+        console.log(5);
         eat();
     }
 });
 fs.readFile('./salt','utf8',function(err,data){
     console.log(2,'salt');
     if(++count==2){
+        console.log(5);
         eat();
     }
 });
