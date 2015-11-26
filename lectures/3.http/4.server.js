@@ -38,7 +38,10 @@ var person = function(request,response){
         response.end('客官，一'+urlObj.query.unit+urlObj.pathname.slice(4));
     }else if(urlObj.pathname == '/clock'){
         response.end(new Date().toUTCString());
-    }else{
+    }else if (urlObj.pathname == '/favicon.ico'){
+        response.statusCode = 404;
+    }
+    else{
         var filename = urlObj.pathname.slice(1);// menu.js
         response.setHeader('Content-Type',mime.lookup(filename));
         var content = fs.readFileSync(filename,'utf8');
