@@ -1,0 +1,52 @@
+1. 200HTTP响应是什么意思
+
+响应成功
+
+2. Connection:Keep-Alive头为什么很重要
+
+
+如果不设置不知道解析成什么样子的代码格式
+
+3. 如何导入一个模块
+
+requre('模块名字')
+
+4. 如何安装一个模块
+npm install 模块名字
+
+5. 写出 url http fs mime 模块中的几个常用方法，并注明其作用
+
+var objUrl=url.parse(地址,true)获取url对象
+objUrl.pathname // 地址
+
+http.createServer  创建一个服务器
+
+fs.readFileSync(path,编码) 同步获取文件
+
+fs.readFile（path,'utf-8',function(err,data){
+	console.log(data)
+}）异步获取文件
+mime.lookup(文件)获取文件的type
+
+6. 写出几个global下的全局变量并注明其作用
+
+exports 输出模块
+require 输入模块
+module  模块
+
+7. 写出几个process 下的几个属性或方法并注明其作用
+
+process.exit  退出
+process.argv
+process.cwd 当前文件所属的目录
+process.chdir  更改当前工作目录
+
+process.stdin.on 监听用户输入
+process.stdout.write 用户输出
+process.memoryUsage 内存使用情况
+process.kill 结束 进程
+
+
+
+
+
