@@ -4,7 +4,7 @@
  * 观察者模式
  * 当主题对象在发生变化时，会通知所有的观察者对象，更新自己
  **/
-//var EventEmitter = require('events').EventEmitter;
+var EventEmitter = require('events').EventEmitter;
 var EventEmitter = require('events');
 var util = require('util');
 util.inherits(Girl,EventEmitter);
