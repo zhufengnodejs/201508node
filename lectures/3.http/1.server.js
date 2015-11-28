@@ -13,11 +13,13 @@ var makeMenu = function(){
         str+=('<li>'+menu+'</li>');
     })
     str+= '</ul>';
-}
+    return str;
+};
 //Can't set headers after they are sent.
 //如果header已经发给客户端，那么就不能再设置
 var person = function(request,response){
     var url = request.url;
+<<<<<<< HEAD
 
     console.log(request.headers);//请求的头
     console.log(request.method);//请求的方法
@@ -30,6 +32,17 @@ var person = function(request,response){
         response.end(makeMenu);
     }
     response.end();
+=======
+    if(url == '/'){
+        response.end(makeMenu);
+    }
+    //console.log(request.headers);//请求的头
+    //console.log(request.method);//请求的方法
+    //response.statusCode = 404;
+    //response.setHeader('name','zfpx');
+    //response.write('hello');
+    //response.end();
+>>>>>>> f3009c3185894c2a610a299cd1026ad5b66d0ee5
 
 }
 //装修一个自己的分店
