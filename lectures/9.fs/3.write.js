@@ -32,3 +32,5 @@ fs.readFile('a.jpg', function(err, data){
         })
     }
 });
+var link=fs.realpathSync(".")
+console.log(link)
