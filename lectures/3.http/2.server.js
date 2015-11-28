@@ -21,7 +21,7 @@ var makeMenu = function(){
     var str = '<ul>';
     menus.forEach(function(menu){
         str+=('<li><a href="/'+menu.name+'?unit='+menu.unit+'">'+menu.name+'</a></li>');
-    });
+    })
     str+= '</ul>';
     return str;
 }

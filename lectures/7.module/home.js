@@ -6,15 +6,15 @@ function home(require,__dirname,__filename,module){
     var x =5;
     var addX = function(num){
         console.log(x+num);
-    }
+    };
     exports.addX = addX;
     exports.x = x;
     exports.say = function(name){
         console.log('hello '+name);
-    }
+    };
     module.exports = function(name){
         console.log('hello '+name);
-    }
+    };
     module.exports = [];
     module.exports = 'hello';
 /*
