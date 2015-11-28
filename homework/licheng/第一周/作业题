@@ -1,0 +1,108 @@
+问答题
+1. 200HTTP响应是什么意思
+解:
+    200HTTP响应代表请求成功
+
+2. Connection:Keep-Alive头为什么很重要
+解：
+    Connection:Keep-Alive表示保持连接，这样做可以保持客户端和服务器处于一种连接状态，客户端与服务器建立捂手关系后这种长连接可以避免大量IP解析，减轻dns解析的压力，保持客户端的请求
+
+3. 如何导入一个模块
+解：
+    导入一个模块用require,例如导入express，由于express不是node提供的系统模块因此需要先安装  npm install express;导入express可以这样写：var app = require("express");
+
+4. 如何安装一个模块
+解：
+    模块有系统模块，有外部模块，有自己写的模块文件，如果是自己写的模块或者系统模块可以这样写  var http = require("http");如果导入外部模块,比如导入外部模块mongoose,那么需要先安装
+    模块 可以通过命令 npm install mongoose,如果安装在全局可以使用-g,如果安装在开发环境，可以设置为 --save-dev  这样package.json里的开发环境就会有此模块的安装信息；
+
+5. 写出 url http fs mime 模块中的几个常用方法，并注明其作用
+解：
+    url可通过，response来获取当前的路径
+
+    http是系统模块，是用来建立服务器的模块
+    var http = require("http");
+    http.createServer(function(request,response){
+        response.write("向页面输出nodejs");
+        response.end();//结束
+    }).listen(3000,function(){
+        console.log("这是回调函数，服务器端口为3000")
+    })
+
+
+    fs 是系统模块，可以异步也可同步读取文件
+    同步读文件格式为：
+      var fs = require('fs');
+      var contentText = fs.readFileSync('123.txt','utf-8');
+
+    异步读取文件格式为：
+    var fs = require("fs");
+    fs.readFile("a.txt","utf8",function(err,data){
+        if(err){
+            console.log(err)
+        }else{
+           console.log(data)
+        }
+    });
+
+    mime 可以方便我们读取和识别静态文件类型
+
+
+
+6. 写出几个global下的全局变量并注明其作用
+解：
+    process
+        可以获取环境变量，也可以设置环境变量，可以结束进程，可以查看内存
+        process.memoryUsage() 查看内存情况
+        console.log(process.memoryUsage().rss) //常驻内存
+        console.log(process.memoryUsage().heapTotal) //堆的总量
+        console.log(process.memoryUsage().heapUsed) //堆的使用率
+    console.log(__dirname);//当前文件所属的目录
+    console.log(process.cwd());//当前文件所属的目录
+
+7. 写出几个process 下的几个属性或方法并注明其作用
+  process.memoryUsage() 查看内存情况
+        console.log(process.memoryUsage().rss) //常驻内存
+        console.log(process.memoryUsage().heapTotal) //堆的总量
+        console.log(process.memoryUsage().heapUsed) //堆的使用率
+        console.log(process.pid) //获取进程id
+代码题
+1. 如何在node中启用一个服务并监听8080端口
+解：
+    var http = require("http");
+    http.createServer(function(request,response){
+        response.write("向页面输出内容");
+        response.end();//结束
+    }).listen(8080)
+
+2. 实现一个简单的事件监听 包括添加监听 发射事件 移除监听解答
+解：
+    var emitter = require("events").EventEmitter();
+    emitter.addListener("some_event",function(){
+        console.log("事件绑定")
+    })
+    emitter.emit("some_event");
+
+3. 如何读取一个txt文本，并且解决乱码问题
+解：
+   var fs = require("fs");
+   fs.readFile("a.txt", "utf8", function(err,data){
+        if(err){
+            console.log(err)
+        }else{
+            console.log(data)
+        }
+   })
+
+4. 自己实现一遍buffer的拷贝方法
+解：
+  Buffer.prototype.cp = function(targetBuffer, targetStart, sourceStart, sourceEnd){
+      var length = sourceEnd-sourceStart>targetBuffer.length-targetStart?targetBuffer.length-targetStart:sourceEnd-sourceStart
+      //console.log(length);
+      for(var i=sourceStart;i<sourceStart+length;i++)
+              targetBuffer[targetStart++] = this[i];
+  }
+  var src = new Buffer([6,7,8,9,10,11,12]);
+  var target = new Buffer([1,2,3,4,5,6,0,0,0,0,0,0]);
+  src.cp(target,6,0,6)
+  console.log(target);

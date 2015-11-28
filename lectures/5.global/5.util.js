@@ -8,7 +8,7 @@ function Parent(name,age){
 }
 
 function Child(name,age){
-    Parent.call(this,name,age);
+    Parent.apply(this,[name,age]);
     this.name = name;
 }
 util.inherits(Child,Parent);

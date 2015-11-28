@@ -1,0 +1,41 @@
+1.客户端请求收到服务器响应状态码,表示请求成功
+2.保持服务器与客户端的连接,避免建立和断开连接的开销
+3.通过require导入模块
+4.npm install +<module-name>
+5.fs的readFileSync()  —读取文件内容  http createServer 创建服务器连接
+6.__filename   当前正在执行的脚本文件名   __dirname当前脚本所在目录
+7.exit退出,cwd返回当前进程的目录
+8
+var http=require(‘http’);
+var url=require(‘url’)
+http.createServer(function(request,response{
+   respond.writeHead(200,{“Content-Type”:’test/plain’});
+  response.write(‘Hello World’);
+response.end();
+}).listen(8080);
+
+9
+  var EventEmitter=require(‘event’).EventEmitter;
+  var event=new EventEmitter();
+  event.on(‘event’,function(){
+      console.log(“触发event事件”)
+});
+event.addListener(‘event’,function(){
+})
+event.removeListener(‘event’,function(){
+})
+event.emit(‘event’);
+10.
+   var fs=require(‘fs’);
+var readerStrem=fs.createReadStream(‘input.txt’);
+     readerStream.setEncoding(‘uft8’);
+   var writerStream=fs.createWriteStream(‘input.txt’);
+   writerSteam.write(‘sdjfsd’,’uft8’);
+writerStream.end();
+11.
+   Buffer.prototype.cp=function(target,start,begin,end,){
+      var len=end-begin>target.length-start?target.length-start:end-begs;
+               for(var i=begin;i<start+length;i++){
+                        target[start++]=this[i];
+}
+}

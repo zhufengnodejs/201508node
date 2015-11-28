@@ -9,13 +9,7 @@ var ejs = require('ejs');
  * @param request 请求对象
  * @param response 响应对象
  */
-var menus = [
-    {name:'豆豉烤鱼',unit:'条'},
-    {name:'东坡肘子',unit:'只'},
-    {name:'水煮牛肉',unit:'盘'},
-    {name:'米饭',unit:'碗'},
-    {name:'汇源果汁',unit:'瓶'}
-];
+var menus = [{name:'豆豉烤鱼',unit:'条'},{name:'东坡肘子',unit:'只'},{name:'水煮牛肉',unit:'盘'},{name:'米饭',unit:'碗'},{name:'汇源果汁',unit:'瓶'}];
 var makeMenu = function(){
     var str = '<ul>';
     menus.forEach(function(menu){
