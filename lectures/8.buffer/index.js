@@ -8,7 +8,7 @@
  */
 //创建Buffer对象三种方法
 //指定buffer长数
-/*var buf1 = new Buffer(12);
+var buf1 = new Buffer(12);
 console.log(buf1);
 buf1.fill(0,0);//从哪个索引开始，到哪个索引结束，赋指定的值
 console.log(buf1);
@@ -45,13 +45,12 @@ console.log(buf);
 
 // buffer字符串如何转化
 var buf = new Buffer('珠峰培训');
-console.log(buf.toString()+'====================================');//转成字符串
+console.log(buf.toString());//转成字符串
 
 var buf = new Buffer(12);
 buf.write("珠峰",0,6,'utf8');
-buf.write("培训",6,3);*/
-
-/*console.log(buf.toString());
+buf.write("培训",6,3);
+console.log(buf.toString());
 
 var buf = new Buffer('珠峰培训');
 console.log(buf);
@@ -61,20 +60,20 @@ var buf2 = new Buffer([0x9f ,0xb9, 0xe8, 0xae, 0xad]);
 console.log(buf1.toString());
 console.log(buf2.toString());
 Buffer.concat([buf1,buf2],12);
-console.log(Buffer.concat([buf1,buf2],12).toString());*/
+console.log(Buffer.concat([buf1,buf2],12).toString());
 
-/*var StringDecoder = require('string_decoder').StringDecoder;
+var StringDecoder = require('string_decoder').StringDecoder;
 var decoder = new StringDecoder();
 var decoder2 = new StringDecoder();
-/!*console.log(decoder.write(buf1))
+console.log(decoder.write(buf1));
 console.log(decoder2.write(buf1));
 console.log(decoder.write(buf2));
-console.log(decoder2.write(buf2));*/
+console.log(decoder2.write(buf2));
 //判断一个对象是否是buffer
-/*console.log(Buffer.isBuffer({}));//false
+console.log(Buffer.isBuffer({}));//false
 console.log(Buffer.byteLength("珠峰"));
 console.log(Buffer.isEncoding('utf8'));
-console.log(Buffer.isEncoding('gbk'));*/
+console.log(Buffer.isEncoding('gbk'));
 
 /**
  buf.cp(targetBuffer, [targetStart], [sourceStart], [sourceEnd])#
@@ -94,29 +93,8 @@ Buffer.prototype.cp = function(targetBuffer, targetStart, sourceStart, sourceEnd
 var src = new Buffer([6,7,8,9,10,11,12]);
 var target = new Buffer([1,2,3,4,5,6,0,0,0,0,0,0]);
 src.cp(target,6,0,6)
-/*console.log(target);*/
+console.log(target);
 
-
-Buffer.prototype.copy1=function(tar,tarStart,sourStart,sourEnd){
-   if(tarStart<0 ||sourEnd<sourStart || sourEnd-sourStart<0){
-        console.error("请正确设置")
-        return false;
-    };
-    var Wlength=sourEnd-sourStart;
-    var Wlength = sourEnd-sourStart>tar.length-tarStart?tar.length-tarStart:sourEnd-sourStart
-    for(var i=sourStart;i<sourStart+Wlength;i++){
-        tar[tarStart++]=this[i]
-    }
-    return tar
-}
-var src=new Buffer([11,12,13,14,15,16,17])
-var target=new Buffer([0,1,2,3,4,5,6,7,8,9])
-console.log(src.copy1(target,0,0,7))
-
-var fs=require("fs");
-fs.rename("201508node/homework/第一周作业.md","201508node/homework/第一周作业_卞功磊.md",function(err){
-
-});
 /*
 
 function Person(){
