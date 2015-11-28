@@ -12,7 +12,8 @@ var makeMenu = function(){
         str+=('<li>'+menu+'</li>');
     })
     str+= '</ul>';
-}
+    return str;
+};
 //Can't set headers after they are sent.
 //如果header已经发给客户端，那么就不能再设置
 var person = function(request,response){
@@ -22,10 +23,10 @@ var person = function(request,response){
     }
     //console.log(request.headers);//请求的头
     //console.log(request.method);//请求的方法
-    response.statusCode = 404;
-    response.setHeader('name','zfpx');
-    response.write('hello');
-    response.end();
+    //response.statusCode = 404;
+    //response.setHeader('name','zfpx');
+    //response.write('hello');
+    //response.end();
 
 }
 //装修一个自己的分店

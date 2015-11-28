@@ -1,0 +1,30 @@
+问答题
+
+1. 200HTTP响应是什么意思
+200是OK的意思，服务器告诉客户端它发出的请求已经响应成功了。
+
+2. Connection:Keep-Alive头为什么很重要
+每一次创建连接都需要花费时间，这样建立一个长期的连接可以节约创建连接的时间。
+
+3. 如何导入一个模块
+var xxx = require('xxx');
+
+4. 如何安装一个模块
+npm install xxx (-g --save)
+5. 写出 url http fs mime 模块中的几个常用方法，并注明其作用
+1) url: url.parse=>根据url的规则来解析一个字符串   url.resolve=>根据url的规则把多个path字符串拼接成正确的形式
+2) http: http.create=>创建服http务器
+3) fs: fs.readFile=>同步读取文件  fs.readFileSync=>异步读取文件  fs.createReadStream/createWriteStream=>创建可读/可写流
+4) mime:  mime.lookup=>根据目标文件的拓展名来找到与其对应的content-type
+
+6. 写出几个global下的全局变量并注明其作用
+1) Buffer=> buffer的类，可以用来读取或
+2) exports=> 用来指明模块中哪些方法或属性可以导出
+3) console=> 用来输出，debug时候一定会用到
+
+7. 写出几个process 下的几个属性或方法并注明其作用
+1) process.pid=> 显示进程id，可以调用process.kill(pid)的方法或者手动杀死该进程
+2) process.cwd()=> 改变进程所属的路径的方法
+3) process.argv=> 进程运行时的参数列表，第一个是node，第二个是文件名，其他的就是运行时指定的参数了
+4) process.exit()=> 结束或退出当前的进程
+5) process.env=> 可以指明运行时的环境
