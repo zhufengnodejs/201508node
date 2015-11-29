@@ -21,20 +21,28 @@ var server = http.createServer(function(req,res){
     }else if(pathname == '/reg'){
         var contentType = req.headers['content-type'];
         req.setEncoding('utf8');
-        var result = '';
-        req.on('data',function(chunk){
-            result +=chunk ;
-        });
-        req.on('end',function(){
-            if(contentType == 'application/json'){
-                req.body = JSON.parse(result);
-            }else if(contentType == 'application/x-www-form-urlencoded'){
-                req.body = querystring.parse(result);
-            }
-            res.end(JSON.stringify(req.body));
-        });
-    }
+        if(hashBody(req)){
+            var result = '';
+            req.on('data',function(chunk){
+                result +=chunk ;
+            });
+            req.on('end',function(){
+                if(contentType == 'application/json'){
+                    req.body = JSON.parse(result);
+                }else if(contentType == 'application/x-www-form-urlencoded'){
+                    req.body = querystring.parse(result);
+                }
+                res.end(JSON.stringify(req.body));
+            });
+        }else{
+            res.end('空空如也');
+        }
 
+    }
+    function hashBody(req){
+        return req.headers['content-length'];
+    }
 
 });
 server.listen(8080);
+
