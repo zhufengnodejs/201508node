@@ -17,8 +17,11 @@ var server = http.createServer(function(req,res){
     //req.url;//获取请求的字符串
     var urlObj = url.parse(req.url,true);
     var pathname = urlObj.pathname;
+    if(pathname == '/favicon.ico'){
+        return res.end('404');
+    }
     if(pathname == '/'){
-        fs.createReadStream('./index.html').pipe(res);
+        fs.createReadStream('./h5.html').pipe(res);
     }else if(pathname == '/reg'){
         var form = new formidable.IncomingForm();
         form.parse(req,function(err,fields,files){
@@ -26,8 +29,9 @@ var server = http.createServer(function(req,res){
             //console.log(files);
             res.setHeader('Content-Type','text/html;charset=utf-8');
             fs.createReadStream(files.avatar.path).pipe(fs.createWriteStream('./upload/'+files.avatar.name));
-            res.write(JSON.stringify(fields));
-            res.end('<img src="/upload/'+files.avatar.name+'">');
+            //res.write(JSON.stringify(fields));
+            //res.end('<img src="/upload/'+files.avatar.name+'">');
+            res.end("/upload/"+files.avatar.name);
         });
     }else{
         fs.createReadStream('.'+pathname).pipe(res);
