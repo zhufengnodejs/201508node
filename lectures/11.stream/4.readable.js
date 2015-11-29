@@ -10,8 +10,8 @@ util.inherits(Counter,EventEmitter);
  */
 function Counter(){
     EventEmitter.call(this);
-    this._max = 10;
-    this._pos = 1;
+    this._max = 10;//最大值
+    this._pos = 1;//当前值
 }
 Counter.prototype._read = function(){
     var i = this._pos++;
@@ -25,6 +25,7 @@ Counter.prototype._read = function(){
 }
 // 先开始注册监听 -> 安排异步任务(当所有的监听 完成后执行)->再执行异步任务
 var counter = new Counter();
+//当添加任何的监听 的时候触发
 counter.on('newListener',function(event){
     console.log(event == 'data');
     if(event == 'data'){

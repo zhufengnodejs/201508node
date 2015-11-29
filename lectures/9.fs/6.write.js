@@ -18,6 +18,7 @@ fs.open('./msg.txt','w',function(err,fd){
         console.log('成功写入了'+bytesWritten+'字节');
         fs.write(fd,buffer,0,6,6,function(err,bytesWritten,buff){
             console.log('成功写入了'+bytesWritten+'字节');
+            fs.close(fd);
         });
     });
 

@@ -11,6 +11,7 @@ var url = require('url');
 var querystring = require('querystring');
 var formidable = require('formidable');
 var users = [];
+var  mime = require('mime');
 var fs = require('fs');
 //创建服务器
 var server = http.createServer(function(req,res){
@@ -36,6 +37,7 @@ var server = http.createServer(function(req,res){
             res.end(JSON.stringify(filenames));
         });
     }else{
+        res.setHeader('Content-Type',mime.lookup(pathname));
         fs.createReadStream('.'+pathname).pipe(res);
     }
 
