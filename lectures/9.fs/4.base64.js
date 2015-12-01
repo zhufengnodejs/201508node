@@ -7,9 +7,9 @@
  * 5. 把6位字节转成10进制
  * 6. 用此10进制数字作为索引取得对应的字符拼成一个字符串就是最终的base64编码
  */
-var buf = new Buffer('珠');
-console.log(buf);//<Buffer e7 8f a0>
-console.log(parseInt("e7",16),' ',parseInt("8f",16),' ',parseInt("a0",16));
+var buf = new Buffer('珠峰培训');
+console.log(buf);//<Buffer e7 8f a0 e5 b3 b0 e5 9f b9 e8 ae ad>
+console.log(parseInt("e7",16),' ',parseInt("8f",16),' ',parseInt("a0",16),parseInt("e5",16),parseInt("b3",16),parseInt("b0",16));
 //231 143 160
 console.log((231).toString(2),(143).toString(2),(160).toString(2));
 // 11100111 10001111 10100000

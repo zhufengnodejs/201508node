@@ -11,6 +11,7 @@ var app = express();
 app.set('view engine','html');//设置模板的类型
 app.set('views','view');
 app.engine('.html',require('ejs').__express)
+
 app.use(express.static(__dirname));
 app.get('/a',function(req,res){
     res.render('reg',{title:'<h1>hello</h1>',username:'zfpx',password:'123'});
