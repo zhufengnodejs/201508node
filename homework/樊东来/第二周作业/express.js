@@ -71,7 +71,6 @@ app.get('/login', function (req, res) {
 app.post('/login', function (req, res) {
     var username = req.body.username;
     var password= req.body.password;
-    req.session.username = username;
     var path ='./1.json';
     var data = fs.readFileSync(path,'utf8');
     var arr = JSON.parse(data);
