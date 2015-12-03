@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传文件</title>
+</head>
+<body>
+
+File: <input type="file" id="file" name="file">
+<input id="confirmBtn" type="button" value="确定">
+<input id="submitBtn" type="button" value="提交">
+</body>
+<script>
+    window.onload = function(){
+        var files = [];
+        document.getElementById('confirmBtn').addEventListener('click', function(){
+
+            if(document.getElementById('file').files.length != 0){
+                var file = document.getElementById('file').files;
+                files.push(file);
+                var para = document.createElement("P");
+                var t = document.createTextNode("一个文件已添加");
+                para.appendChild(t);
+                document.body.appendChild(para);
+
+                document.getElementById('file').value = '';
+            }else{
+                alert('没选文件！');
+            }
+        });
+
+        document.getElementById('submitBtn').addEventListener('click',function(){
+            var formData = new FormData();
+
+            for(var i=0;i<files.length;i++){
+                formData.append('file'+i, files[i]);
+            }
+            console.log(formData)
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST','/reg',true);
+            xhr.onload= function(){
+                if(this.status == 200){
+                    document.body.appendChild('<div>文件上传成功</div>')
+                }
+            };
+            xhr.send(formData);
+        });
+
+
+    }
+</script>
+</html>
