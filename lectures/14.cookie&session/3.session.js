@@ -29,7 +29,6 @@ http.createServer(function(req,res){
         var cookie = req.headers.cookie;
         var cookieObj = querystring.parse(cookie,'; ');
         res.writeHead(200,{'Content-Type':"text/html;charset=utf-8"});
-
         if(cookieObj[SESSION_KEY]){
             var id = cookieObj[SESSION_KEY];
             var obj = session[id];
