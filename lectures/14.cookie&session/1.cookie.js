@@ -30,10 +30,10 @@ http.createServer(function(request,response){
     if('/favicon.ico' == pathname){
         return response.end('404');
     }else if(pathname == '/write'){//写cookie
-        response.writeHead(200,{'Content-Type':'text/html',"Set-Cookie":["name=zfpx","age=6"]});
+        //response.writeHead(200,{'Content-Type':'text/html',"Set-Cookie":["name=zfpx","age=6"]});
         //response.setHeader("Set-Cookie","name=zfpx; path=/a");
-        //response.setHeader("Set-Cookie","name=zfpx; domain=b.zfpx.cn");
-        //response.setHeader("Set-Cookie","name=zfpx; Expires="+new Date(new Date().getTime()+3600*1000).toGMTString());
+        response.setHeader("Set-Cookie","name=zfpx; domain=.zfpx.cn");
+        //response.setHeader("Set-Cookie","name=zfpx; Expires="+new Date(new Date().getTime()+10000).toGMTString());
         //response.setHeader("Set-Cookie","name=zfpx; Max-Age=20");
         //response.setHeader("Set-Cookie","name=zfpx; HttpOnly");
         response.end('hello');

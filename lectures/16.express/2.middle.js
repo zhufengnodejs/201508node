@@ -23,7 +23,6 @@ app.use(function(req,res,next){
         return res.end('你已经登陆了，不要再访问这个页面了');
     }
     next();
-
 });
 app.get('/',function(req,res){
     res.end('/');

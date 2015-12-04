@@ -22,7 +22,7 @@ var server = http.createServer(function(req,res){
         return res.end('404');
     }
     if(pathname == '/'){
-        fs.createReadStream('./h5.html').pipe(res);
+        fs.createReadStream('./index.html').pipe(res);
     }else if(pathname == '/reg'){
         var form = new formidable.IncomingForm();
         form.parse(req,function(err,fields,files){
