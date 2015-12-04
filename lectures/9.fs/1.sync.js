@@ -16,7 +16,7 @@ fs.readFile('./read.txt',{encoding:'utf8'},function(err,data){
     }else{
         console.log(data);
     }
-})
+});
 
 fs.readFile('./read2.txt',{encoding:'utf8'},function(err,data){
     if(err){

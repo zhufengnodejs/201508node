@@ -21,17 +21,17 @@ var server = http.createServer(function(req,res){
         return res.end('404');
     }
     if(pathname == '/'){
-        fs.createReadStream('./h5.html').pipe(res);
+        fs.createReadStream('./index.html').pipe(res);
     }else if(pathname == '/reg'){
         var form = new formidable.IncomingForm();
         form.parse(req,function(err,fields,files){
-            //console.log(fields)
-            //console.log(files);
+            console.log(fields)
+            console.log(files);
             res.setHeader('Content-Type','text/html;charset=utf-8');
             fs.createReadStream(files.avatar.path).pipe(fs.createWriteStream('./upload/'+files.avatar.name));
             //res.write(JSON.stringify(fields));
-            //res.end('<img src="/upload/'+files.avatar.name+'">');
-            res.end("/upload/"+files.avatar.name);
+            res.end('<img src="/upload/'+files.avatar.name+'">');
+           // res.end("/upload/"+files.avatar.name);
         });
     }else{
         fs.createReadStream('.'+pathname).pipe(res);

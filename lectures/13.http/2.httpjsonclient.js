@@ -15,7 +15,7 @@ var request = http.request(options,function(res){
     res.on('data',function(chunk){
         console.log(chunk.toString());
     });
-})
+});
 
 //request.write('{"name":"zfpx","age":6}');//写请求写
 

@@ -42,7 +42,6 @@ var server = http.createServer(function(req,res){
     function hashBody(req){
         return req.headers['content-length'];
     }
-
 });
 server.listen(8080);
 
