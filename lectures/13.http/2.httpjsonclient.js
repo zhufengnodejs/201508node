@@ -8,14 +8,14 @@ var options = {
     path: '/reg',
     method:'POST',
     headers:{'Content-Type':'application/json'}
-}
+};
 
 var request = http.request(options,function(res){
     console.log(res.statusCode);
     res.on('data',function(chunk){
         console.log(chunk.toString());
     });
-})
+});
 
 //request.write('{"name":"zfpx","age":6}');//写请求写
 

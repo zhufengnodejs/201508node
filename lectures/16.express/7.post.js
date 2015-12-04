@@ -10,6 +10,7 @@ var app = express();
 app.set('view engine','html');//设置模板的类型
 app.set('views','view');
 app.engine('.html',require('ejs').__express);
+
 //app.use(bodyParser.json());
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {

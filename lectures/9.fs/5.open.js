@@ -15,12 +15,19 @@
 var fs = require('fs');
 
 //fs.readFileSync();
-var fd = fs.openSync('read.txt','r');
+var fd = fs.openSync('read.txt', 'r');
+
 console.log(fd);
+
 var buffer = new Buffer(12);
-fs.readSync(fd,buffer,0,6,0);//珠峰
-fs.readSync(fd,buffer,6,6);//培训
+
+fs.readSync(fd, buffer, 0, 6, 0);//珠峰
+fs.readSync(fd, buffer, 6, 6);//培训
+
 console.log(buffer.toString());
+
 fs.closeSync(fd);
-var fd2 = fs.openSync('read.txt','r');
+
+var fd2 = fs.openSync('read.txt', 'r');
+
 console.log(fd2);

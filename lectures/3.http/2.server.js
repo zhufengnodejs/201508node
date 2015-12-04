@@ -11,10 +11,10 @@ var makeMenu = function(){
     var str = '<ul>';
     menus.forEach(function(menu){
         str+=('<li><a href="/'+menu.name+'?unit='+menu.unit+'">'+menu.name+'</a></li>');
-    })
+    });
     str+= '</ul>';
     return str;
-}
+};
 //Can't set headers after they are sent.
 //如果header已经发给客户端，那么就不能再设置
 var person = function(request,response){

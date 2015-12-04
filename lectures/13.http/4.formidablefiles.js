@@ -10,9 +10,11 @@ var http = require('http');
 var url = require('url');
 var querystring = require('querystring');
 var formidable = require('formidable');
+
 var users = [];
 var  mime = require('mime');
 var fs = require('fs');
+
 //创建服务器
 var server = http.createServer(function(req,res){
     //req.url;//获取请求的字符串
