@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+            margin-bottom: 10px;
+        }
+
+        li input {
+            height: 30px;
+            line-height: 30px;
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+
+<div style="height:400px;width:550px;margin:50px auto;margin-left:auto;border:solid 1px;background: rgb(246, 246, 253);">
+    <div style="margin-left: 35px;">
+
+        <h1 style="text-align: center;">首页</h1>
+
+        <form action="#" role="form" style="margin-top: 90px;margin-left: 60px;">
+
+            <ul>
+                <li>
+                    <input type="text" name="username" id="username" placeholder="用户名">
+                </li>
+                <li>
+                    <input type="password" name="paw" id="paw" placeholder="密码">
+                </li>
+            </ul>
+
+            <div style="margin-top: 145px;">
+                <input type="button" value="注册" id="register-btn">
+                <input type="button" value="登录" id="login-btn">
+            </div>
+        </form>
+    </div>
+</div>
+<script src="jquery.js"></script>
+<script>
+    $('#register-btn').on('click', function () {
+        var data = {
+            username: $('#username').val(),
+            paw: $('#paw').val()
+        };
+        $.ajax({
+            method: "post",
+            url: '/register',
+            data: data,
+            success: function (data) {
+                alert(data);
+                location.href = '/login';
+            }
+        })
+    })
+</script>
+</body>
+</html>
