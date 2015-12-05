@@ -1,0 +1,6 @@
+ path:访问path路径可以获取cookie;
+ domain:在指定域名下发送cookie;
+ Max-age:指定cookie的存活时间（秒为单位），如果没有指定失效时间，那么cookie不会写入硬盘，只持续到会话结束(浏览器关闭)
+ Expires：设置cookie失效时间  eq:new Date(new Date().getTime()+3600*1000).toGMTString()
+ httpOnly:浏览器不能对cookie进行操作
+ Set-Cookie:设置cookie  （key＝value）

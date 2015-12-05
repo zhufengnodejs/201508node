@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+用户名<input type="text" name="username" id="username"/> <br/>
+密码<input type="text" name="password" id="password"/><br/>
+上传文件 <input type="file" multiple id="avatar"/><br/>
+<a id="submit">提交</a>
+<script>
+    document.getElementById('submit').addEventListener('click',function(){
+        var form = new FormData();
+        form.append('username',username.value);
+        form.append('password',password.value);
+        for(var i = 0; i<avatar.files.length;i++){
+            form.append('avatar'+i,avatar.files[i]);
+        }
+        var xhr = new XMLHttpRequest();
+        xhr.open('post','/ajax',true);
+        xhr.onload=function(){
+            if(this.status == 200){
+                var content = JSON.parse(this.responseText);
+
+                var photoList = content.photo;
+                var frag = document.createDocumentFragment();
+                for(var i = 0; i<photoList.length;i++){
+                    var img = document.createElement('img');
+                    img.src=photoList[i];
+                    console.log(img.src);
+                    frag.appendChild(img);
+                }
+                document.body.appendChild(frag);
+            }
+        }
+        xhr.send(form);
+    });
+</script>
+</body>
+</html>
