@@ -3,7 +3,7 @@ var http = require('http');//需要一个模块，加载 一个模块
 var url = require('url');
 var fs = require('fs');
 var mime = require('mime');//是 一个工具，实现文件类型和内容类型的转换
-var ejs = require('ejs');
+//var ejs = require('ejs');
 /**
  *
  * @param request 请求对象

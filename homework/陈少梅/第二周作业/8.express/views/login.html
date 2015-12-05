@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{padding: 0;margin: 0;}
+        body{    font-family: "微软雅黑";background: #333;}
+        .register{
+            width: 544px;
+            margin: 100px auto;
+            height: 174px;
+            background: #fff;
+            padding: 132px 41px;
+            border-radius: 10px;
+        }
+        .register div{margin-bottom: 15px;}
+        .register span{display: inline-block;width: 100px;    }
+
+        .username input,.password input{
+            width: 400px;
+            line-height: 26px;
+            padding: 5px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            font-family: "微软雅黑";
+        }
+        .register-btn{margin-left: 100px;}
+        .register-btn input{
+            width: 120px;
+            height: 38px;
+            background: #4775AF;
+            border: 0;
+            border-radius: 4px;
+            color: white;
+
+    </style>
+</head>
+<body>
+<div class="register">
+    <form  role="form" method="post">
+    <div class="username"><span>用户名：</span><input id="username" name="username" type="text"/ placeholder="请输入用户名"></div>
+    <div class="password"><span>密码：</span><input id="password" name="password" type="text"/ placeholder="请输入密码"></div>
+    <div class="register-btn"><input id="loginbtn" type="submit" value="登陆"/ ></div>
+    </form>
+
+</div>
+</body>
+</html>
