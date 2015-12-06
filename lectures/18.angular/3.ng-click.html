@@ -5,8 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-<div ng-app ng-init="click=false">
-    <button ng-click="click= !click">隐藏/显示</button>
+<div ng-app="" ng-init="click=false">
+    <button ng-click="click= !click">{{click?"显示":"隐藏"}}</button>
     <div ng-hide="click">
         请输入一个名字：<input type="text" ng-model="name">
         Hello <span ng-bind="name"></span>

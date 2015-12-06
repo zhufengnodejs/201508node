@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body ng-init="phones=[{name:'iphone6',snippet:'iphone is good'},{name:'xiaomi',snippet:'xiaomi is bad'}]">
+请输入关键字 <input type="text" ng-model="query">
+<ul>
+    <li ng-repeat="phone in phones | filter:query">
+        {{phone.name}}
+        <p>{{phone.snippet}}</p>
+    </li>
+</ul>
+</body>
+<script src="http://7xjf2l.com2.z0.glb.qiniucdn.com/angular.js"></script>
+<html>
