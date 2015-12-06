@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="border">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<zf-hello></zf-hello>
+<div zf-hello>div</div>
+<div class="zf-hello"></div>
+<!-- directive:zf-hello -->
+</body>
+
+<script src="angular.js"></script>
+<script>
+    angular.module('border',[]).directive('zfHello',function(){
+        return {
+            restrict:'EACM',
+           template:'<span>hello</span>',
+            replace:true
+        }
+    });
+
+</script>
+</html>

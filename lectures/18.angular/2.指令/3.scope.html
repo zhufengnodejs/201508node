@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpx">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-controller="zfCtrl">
+    外部名称<input type="text" id="outername" ng-model="zhangsan.name">
+    外部家乡<input type="text" ng-model="zhangsan.address">
+    <zf-person name="{{zhangsan.name}}" address="zhangsan.address"></zf-person>
+    <zf-person name="{{lisi.name}}" address="lisi.address"></zf-person>
+</div>
+</body>
+<script src="angular.js"></script>
+<script>
+    window.onload = function(){
+        document.querySelector("#outername").addEventListener('click',function(){
+            alert(this.getAttribute('ng-model'));
+        })
+    }
+    angular.module('zfpx',[]);
+    angular.module('zfpx').controller('zfCtrl',function($scope){
+        $scope.zhangsan = {
+            name:'张三',
+            address:'北京'
+        }
+        $scope.lisi = {
+            name:'李四',
+            address:'杭州'
+        }
+    });
+
+    angular.module('zfpx').directive('zfPerson',function(){
+        return {
+            restrict:'E',
+            replace:true,
+            scope:{
+                username:"@name",
+                address:"="
+            },
+            template:"<div>{{username}}{{address}}指令名字<input ng-model='username'>指令家乡<input ng-model='address'></div>",
+           /* link:function(scope,element,attr){
+                console.log(attr);
+                scope.person = JSON.parse(attr.person);
+            }*/
+        }
+    });
+</script>
+</html>

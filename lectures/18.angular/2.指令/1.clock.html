@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="border">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div zf-border>div</div>
+<span zf-border>span</span>
+<input type="text" zf-border>
+</body>
+
+<script src="angular.js"></script>
+<script>
+    angular.module('border',[]).directive('zfBorder',function(){
+        return {
+            // element是一个jquery对象
+            link:function(scope,element,attrs){
+                element.on('mouseover',function(){
+                   element.css({outline:"red dotted thick"});
+                });
+                element.on('mouseout',function(){
+                    element.css({outline:"none"});
+                });
+            }
+        }
+    });
+
+</script>
+</html>
