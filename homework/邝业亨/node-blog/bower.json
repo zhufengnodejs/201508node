@@ -1,0 +1,14 @@
+{
+  "name": "node-blog",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Mr Kwong <kuangyeheng@gmail.com>"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "dependencies": {
+    "bootstrap": "~3.3.6"
+  }
+}

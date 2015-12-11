@@ -1,0 +1,18 @@
+<% include ../headers/base-header %>
+<div class="container">
+    <form id="login_form" action="/users/registerInfo" method="post" target="_self">
+        <b class="cake"></b>
+        <div class="center_wrap">
+            <div class="input-group mb_10">
+                <span class="glyphicon glyphicon-user input-group-addon fixed_icon" id="basic-addon1"></span>
+                <input name="username" type="text" class="form-control" placeholder="用户名"">
+            </div>
+            <div class="input-group mb_10">
+                <span class="glyphicon glyphicon-credit-card input-group-addon fixed_icon"></span>
+                <input name="password" type="password" class="form-control" placeholder="密码"">
+            </div>
+            <button class="btn btn-default btn-primary btn-block" type="submit">注册</button>
+        </div>
+    </form>
+</div>
+<% include ../footers/base-footer %>

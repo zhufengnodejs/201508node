@@ -1,0 +1,26 @@
+<% include ../headers/base-header %>
+<div class="container" id="article_detail">
+    <%for (var i=0;i<articles.length;i++) {
+        var article = articles[i];
+    %>
+    <div class="panel panel-info post_style mb_50">
+        <div class="panel-heading">
+            <h3 class="panel-title"><%= article.postTitle%></h3>
+        </div>
+        <div class="panel-body">
+            <%= article.postContent%>
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item post_images">
+                <%
+                for(var k=0;k<article.postImages.length;k++){
+                    var imgSrc = article.postImages[k];
+                %>
+                <img class="img-responsive img-thumbnail" src="<%= imgSrc%>" alt=""/>
+                <%}%>
+            </li>
+        </ul>
+    </div>
+    <%}%>
+</div>
+<% include ../footers/base-footer %>

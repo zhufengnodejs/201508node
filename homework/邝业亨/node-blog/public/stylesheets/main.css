@@ -1,0 +1,60 @@
+.mb_10 {
+    margin-bottom: 10px;
+}
+.mb_20 {
+    margin-bottom: 20px;
+}
+.mb_50 {
+    margin-bottom: 50px;
+}
+
+.mar_auto {
+    margin: auto;
+}
+
+#login_form {
+    position: fixed;
+    width: 300px;
+    height: auto;
+    padding: 15px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    display: block;
+    letter-spacing: -5px;
+}
+
+#login_form .cake {
+    display: inline-block;
+    height: 100%;
+    width: 0;
+    font-size: 0;
+    vertical-align: middle;
+
+}
+
+#login_form .center_wrap {
+    display: inline-block;
+    vertical-align: middle;
+    letter-spacing: normal;
+    word-spacing: normal;
+    white-space: normal;
+    word-break: break-word;
+    width: 100%;
+}
+
+#login_form .center_wrap .fixed_icon {
+    top: 0;
+}
+
+#article_detail .post_images{
+    /*text-align: center;*/
+}
+
+#article_detail .post_images img{
+    width: 150px;
+    height: 150px;
+    margin:0 14px;
+}
