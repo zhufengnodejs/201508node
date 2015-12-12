@@ -1,0 +1,41 @@
+<% include ../headers/base-header %>
+<div class="container">
+    <form name="addPost" action="/article/post" enctype="multipart/form-data" method="post">
+        <input type="hidden" name="id" value="<%= article._id%>"/>
+        <div class="form-group">
+            <label for="input_post_title">标题</label>
+            <input value="<%= article.postTitle%>" type="text" class="form-control" name="postTitle" id="input_post_title" placeholder="帖子标题">
+        </div>
+        <div class="form-group">
+            <label for="input_post_content">内容</label>
+            <textarea style="resize:none" rows="10" class="form-control" name="postContent" id="input_post_content" placeholder="帖子内容"><%= article.postContent%></textarea>
+        </div>
+        <div class="form-group">
+            <label for="input_post_images">上传图片</label>
+            <input accept="image/*" type="file" name="postImages" id="input_post_images" multiple>
+            <%
+            if (article.postImages) {
+            %>
+            <div class="row">
+                <%
+                for(var i = 0;i < article.postImages.length;i++){
+                    var imgSrc = article.postImages[i];
+                %>
+                <div class="col-xs-6 col-md-3">
+                    <a href="javascript:;" class="thumbnail">
+                        <img src="<%= imgSrc%>" alt="">
+                    </a>
+                </div>
+                <%
+                }
+                %>
+            </div>
+            <%
+            }
+            %>
+            <p class="help-block">可以一次上传多张图片哦，亲O(∩_∩)O</p>
+        </div>
+        <button type="submit" class="btn btn-success">发表</button>
+    </form>
+</div>
+<% include ../footers/base-footer %>
