@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpx">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-controller="ParentCtrl">
+    父<input type="text" ng-model="username">
+    <div ng-controller="ChildCtrl">
+       子 <input type="text" ng-model="username">
+    </div>
+</div>
+</body>
+<script src="angular.js"></script>
+<script>
+    angular.module('zfpx',[]);
+    angular.module('zfpx').controller('ParentCtrl',function($scope){
+
+    });
+    angular.module('zfpx').controller('ChildCtrl',function($scope){
+
+    });
+
+
+</script>
+</html>

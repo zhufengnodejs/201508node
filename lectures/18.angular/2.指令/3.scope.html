@@ -8,8 +8,8 @@
 <div ng-controller="zfCtrl">
     外部名称<input type="text" id="outername" ng-model="zhangsan.name">
     外部家乡<input type="text" ng-model="zhangsan.address">
-    <zf-person name="{{zhangsan.name}}" address="zhangsan.address"></zf-person>
-    <zf-person name="{{lisi.name}}" address="lisi.address"></zf-person>
+    <zf-person name="{{zhangsan.name}}" address="zhangsan.address" say="say(username)"></zf-person>
+    <zf-person name="{{lisi.name}}" address="lisi.address"  say="say(username)"></zf-person>
 </div>
 </body>
 <script src="angular.js"></script>
@@ -29,6 +29,9 @@
             name:'李四',
             address:'杭州'
         }
+        $scope.say = function(username){
+            alert(username);
+        }
     });
 
     angular.module('zfpx').directive('zfPerson',function(){
@@ -37,9 +40,10 @@
             replace:true,
             scope:{
                 username:"@name",
-                address:"="
+                address:"=",
+                say:"&say"
             },
-            template:"<div>{{username}}{{address}}指令名字<input ng-model='username'>指令家乡<input ng-model='address'></div>",
+            template:"<div>{{username}}{{address}}指令名字<input ng-model='username'>指令家乡<input ng-model='address'><button ng-click='say({username:username})'>打招呼</button></div>",
            /* link:function(scope,element,attr){
                 console.log(attr);
                 scope.person = JSON.parse(attr.person);
