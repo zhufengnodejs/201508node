@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="a">
++<input type="text" id="b">
+<div id="result"></div>
+<input type="button" onclick="doCalcu()" value="相加">
+</body>
+<script src="../angular.js"></script>
+<script>
+    function doCalcu(){
+       var injector = angular.injector(['calcuModel']);
+        var calculator = injector.get('calculator');
+        document.querySelector("#result").innerHTML = calculator.add(
+                document.querySelector("#a").value,
+                document.querySelector("#b").value
+        );
+    }
+    angular.module('calcuModel',[]).factory('calculator', function(){
+        return {
+            add:function(a,b){return (a-0)+(b-0)},
+            minus:function(a,b){return (a-b)}
+        }
+    });
+
+  //系统启动之后，在实例化其它的控制\指令 服务器实例之前进行配置
+    angular.module('calcuModel').config(function(calculatorProvider){
+        //calculatorProvider.setCurrency('￥');
+    });
+</script>
+</html>

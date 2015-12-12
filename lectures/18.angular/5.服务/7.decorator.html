@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="calcuModel">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-controller="sayCtrl">
+<button ng-click="say()">点我</button>
+
+</body>
+<script src="../angular.js"></script>
+<script>
+    angular.module('calcuModel',[]);
+    angular.module('calcuModel').controller('sayCtrl',function($scope,$log){
+       $scope.say = function(){
+           $log.error('hello');
+       }
+    });
+    angular.module('calcuModel').decorator('$log',function($delegate){
+        var errorFn = $delegate.error;
+        $delegate.error = function(){
+            var args = Array.prototype.slice.call(arguments);
+            args.unshift(new Date().toString());
+            errorFn.apply(null,args);
+        }
+        return $delegate;
+    });
+</script>
+</html>
