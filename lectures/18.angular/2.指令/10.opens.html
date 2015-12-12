@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpx">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .title{
+            width:100px;
+            height:30px;
+            border:solid red 1px;
+            background-color: green;
+        }
+        .content{
+            width:100px;
+            height:100px;
+            border:solid black 1px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="zfCtrl">
+    <group>
+        <opener ng-repeat="opener in openers" title="opener.title">
+            {{opener.content}}
+        </opener>
+    </group>
+
+</div>
+</body>
+<script src="angular.js"></script>
+<script>
+    //<div class="alert alert-success" role="alert">...</div>
+    angular.module('zfpx', []);
+    angular.module('zfpx').controller('zfCtrl', function ($scope) {
+        $scope.openers = [
+            {title:"标题1",content:"内容1"},
+            {title:"标题2",content:"内容2"},
+            {title:"标题3",content:"内容3"}
+        ]
+    });
+    angular.module('zfpx').directive('group',function(){
+        return {
+            restrict:'E',
+            replace:true,
+            transclude:true,
+            template:'<div ng-transclude></div>',
+            controller:function(){
+                var openers = [];
+                this.addOpener = function(opener){
+                    openers.push(opener);
+                }
+                this.open = function(current){
+                    current.show = ! current.show;
+                    angular.forEach(openers,function(opener){
+                        if(opener != current){
+                            opener.show = false;
+                        }
+                    });
+                }
+            }
+        }
+    });
+
+    angular.module('zfpx').directive('opener',function(){
+        return {
+            restrict:'E',
+            replace:true,
+            transclude:true,
+            require:'^group',
+            scope:{
+                title:'=title'
+            },
+            templateUrl:'opener.html',
+            link:function(scope,element,attrs,groupController){
+                groupController.addOpener(scope);
+                scope.show = false;
+                scope.toggle = function(){
+                    groupController.open(scope);
+                }
+            }
+        }
+    });
+
+
+</script>
+</html>

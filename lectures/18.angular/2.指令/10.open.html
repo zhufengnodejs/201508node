@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpx">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .title{
+            width:100px;
+            height:30px;
+            border:solid red 1px;
+            background-color: green;
+        }
+        .content{
+            width:100px;
+            height:100px;
+            border:solid black 1px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="zfCtrl">
+    <opener title="{{title}}">
+        {{content}}
+    </opener>
+</div>
+</body>
+<script src="angular.js"></script>
+<script>
+    //<div class="alert alert-success" role="alert">...</div>
+    angular.module('zfpx', []);
+    angular.module('zfpx').controller('zfCtrl', function ($scope) {
+        $scope.title = "标题";
+        $scope.content = "内容";
+    });
+
+    angular.module('zfpx').directive('opener',function(){
+        return {
+            restrict:'E',
+            replace:true,
+            transclude:true,
+            templateUrl:'opener.html',
+            link:function(scope,element,attrs){
+                scope.show = false;
+                scope.toggle = function(){
+                    scope.show = !scope.show;
+                }
+            }
+        }
+    });
+
+
+</script>
+</html>

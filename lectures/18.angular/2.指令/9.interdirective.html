@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpx">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+<div ng-controller="zfCtrl">
+   <girl name="范冰冰" clever beautiful>
+       <famous></famous>
+   </girl>
+   <girl name="angular baby"  clever beautiful></girl>
+</div>
+</body>
+<script src="angular.js"></script>
+<script>
+    //<div class="alert alert-success" role="alert">...</div>
+    angular.module('zfpx', []);
+    angular.module('zfpx').controller('zfCtrl', function ($scope) {
+
+    });
+
+    angular.module('zfpx').directive('girl',function(){
+        return {
+           restrict:'E',
+            scope:{
+                name:'@'
+            },
+            transclude:true,
+            template:'<div>{{name}} is {{characters}}.<div ng-transclude></div></div>',
+            controller:function($scope,$element,$attrs,$http){
+                $scope.characters = [];
+                this.add = function(character){
+                    $scope.characters.push(character);
+                }
+            }
+        }
+    });
+
+    angular.module('zfpx').directive('clever',function(){
+        return {
+            require:'^girl',
+            link:function($scope,element,attrs,girlCtrl){
+                girlCtrl.add('clever');
+            }
+        }
+    });
+
+    /**
+     * ?如果没有找到依赖的指令，第四个参数会给NULL
+     * ^ 如果有这个前缀，会在自己和上级的指令链里找对应指令
+     * ?^
+     * 没有前缀  如果没有对应的指令，会抛出一个错误
+     */
+    angular.module('zfpx').directive('beautiful',function(){
+        return {
+            require:'girl',
+            link:function($scope,element,attrs,girlCtrl){
+                girlCtrl.add('beautiful');
+            }
+        }
+    });
+    angular.module('zfpx').directive('famous',function(){
+        return {
+            require:'^girl',
+            link:function($scope,element,attrs,girlCtrl){
+                console.log(girlCtrl);
+                girlCtrl.add('famous');
+            }
+        }
+    });
+
+</script>
+</html>
