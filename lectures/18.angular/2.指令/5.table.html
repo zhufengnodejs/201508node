@@ -3,29 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        table,td{
+            border:1px solid red;
+        }
+    </style>
 </head>
 <body>
 <div ng-controller="ParentCtrl">
-    <zf-table datasource="items"></zf-table>
+    <zf-table datasource="techers"></zf-table>
+    <table>
+        <tr><td>姓名</td><td>年龄</td></tr>
+        <tr><td>zhangsan</td><td>5</td></tr>
+    </table>
 </div>
 <div ng-controller="ChildCtrl">
-   <zf-table datasource="items"></zf-table>
+   <zf-table datasource="students"></zf-table>
 </div>
 </body>
 <script src="angular.js"></script>
 <script>
     angular.module('zfpx',[]);
     angular.module('zfpx').controller('ParentCtrl',function($scope){
-
+        $scope.techers = [{name:'zhangsan',age:5},{name:'lisi',age:6}];
     });
     angular.module('zfpx').controller('ChildCtrl',function($scope){
-
+        $scope.students = [{name:'wangwu',age:5},{name:'zhaoliu',age:6}];
     });
 
     angular.module('zfpx').directive('zfTable',function(){
-
+        return {
+            scope:{
+                items:"=datasource"
+            },
+            templateUrl:'items.html'
+        }
     });
 
 
 </script>
+
 </html>

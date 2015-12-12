@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpx">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+<div ng-controller="zfCtrl">
+    <zf-alert level="success">
+        <p>这是一个成功</p>
+    </zf-alert>
+    <zf-alert level="danger">
+        <p>这是一个失败</p>
+    </zf-alert>
+</div>
+</body>
+<script src="angular.js"></script>
+<script>
+    //<div class="alert alert-success" role="alert">...</div>
+    angular.module('zfpx', []);
+    angular.module('zfpx').controller('zfCtrl', function ($scope) {
+
+    });
+
+    angular.module('zfpx').directive('zfAlert',function(){
+        return {
+            replace:true,
+            transclude:true,
+            scope:{
+              level:"@"
+            },
+            template:'<div class="alert alert-{{level}}" ng-transclude role="alert"></div>',
+            link:function(scope,element,attrs){
+                element.bind('click',function(){
+                    alert(element.html());
+                });
+            }
+        }
+    });
+
+</script>
+</html>

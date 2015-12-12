@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpx">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-controller="ParentCtrl">
+    <zf-table datasource="items"></zf-table>
+</div>
+<div ng-controller="ChildCtrl">
+    <zf-table datasource="items"></zf-table>
+</div>
+</body>
+<script src="angular.js"></script>
+<script>
+    angular.module('zfpx', []);
+    angular.module('zfpx').controller('ParentCtrl', function ($scope) {
+        $scope.items = [
+            {name: '张三', age: 20},
+
+            {name: '张三2', age: 20},
+            {name: '张三3', age: 20},
+            {name: '张三4', age: 20}
+        ];
+    });
+
+
+    angular.module('zfpx').controller('ChildCtrl', function ($scope) {
+        $scope.items = [
+            {name: '李四', age: 20},
+            {name: '李四2', age: 20},
+            {name: '李四3', age: 20},
+            {name: '李四4', age: 20}
+        ];
+    });
+
+    angular.module('zfpx').directive('zfTable', function () {
+        return {
+            link: function (scope, element, attr) {
+                var str = '<table>';
+                for (var i = 0; i < scope[attr.datasource].length; i++) {
+                    str += "<tr><td>" + scope.items[i].name + "</td><td>" + scope.items[i].age + "</td></tr>";
+                }
+                str += '</table>';
+                element.html(str);
+            }
+        }
+    });
+
+
+</script>
+</html>
