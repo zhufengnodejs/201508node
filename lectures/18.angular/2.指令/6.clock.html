@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpx">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-controller="ClockCtrl">
+   数据格式: <input type="text" ng-model="format">
+    当前时间 <span current-time="format"></span>
+    <hr>
+    数据格式: <input type="text" ng-model="format2">
+    当前时间 <span current-time="format2"></span>
+</div>
+
+</body>
+<script src="angular.js"></script>
+<script>
+    angular.module('zfpx',[]);
+    angular.module('zfpx').controller('ClockCtrl',function($scope){
+        $scope.format='yyyy-M-dd hh:mm:ss';
+    });
+
+    angular.module('zfpx').directive('currentTime',function($interval,$filter){
+        return {
+            link:function(scope,element,attrs){
+                var format;
+                var timeoutid;
+
+                function updateTime(){
+                    console.log(timeoutid);
+                    element.text($filter('date')(new Date(),scope[attrs.currentTime]));
+                }
+
+                scope.$watch(attrs.currentTime,updateTime);
+                timeoutid = $interval(updateTime,1000);
+
+                element.on('$destroy',function(){
+                    $interval.cancel(timeoutid);
+                });
+            }
+        }
+    });
+
+
+</script>
+</html>
