@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="border">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width:100px;
+            height:100px;
+            background-color: red;
+            position:absolute;
+        }
+    </style>
+</head>
+<body>
+<div my-drag >
+   hello
+</div>
+</body>
+<script src="jquery.js"></script>
+<script src="angular.js"></script>
+<script>
+    angular.module('border',[]).directive('myDrag',function(){
+        return {
+            link:function(scope,element,attr){
+               var disx = 0;
+               var disy = 0;
+
+                element.on('mousedown',function(eve){
+                    var self = this;
+                    disx = eve.pageX - angular.element(this).offset().left;//鼠标针对边框 的左偏移量
+                    disy = eve.pageY - angular.element(this).offset().top;//鼠标针对边框 的上偏移量
+                    element.on('mousemove',function(eve){
+                        angular.element(self).css('left',eve.pageX - disx);
+                        angular.element(self).css('top',eve.pageY - disy);
+                    });
+                    $(document).on('mouseup',function(){
+                        angular.element(document).off();
+                    });
+                });
+
+            }
+        }
+    });
+
+</script>
+</html>

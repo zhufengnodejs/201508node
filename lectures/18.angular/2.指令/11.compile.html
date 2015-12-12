@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="border">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div times = "3">
+    <p>{{words}}</p>
+    <p>{{words}}</p>
+    <p>{{words}}</p>
+</div>
+</body>
+
+<script src="angular.js"></script>
+<script>
+    angular.module('border',[]).directive('times',function(){
+        return {
+            compile:function(element,attrs,transclude){
+                console.log('开始指令的编译...');
+                var tpl = element.children();
+                for(var i=0;i<attrs.times-1;i++){
+                    element.append(tpl.clone());
+                }
+                //compile 函数一定会返回一个链接函数
+                return function(scope,element,attrs){
+                    scope.words = 'hello';
+                    console.log('compile的链接函数');
+                }
+            },
+            link:function(){
+                console.log('自定义的链接函数');
+            }
+        }
+    });
+
+</script>
+</html>
