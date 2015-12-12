@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div1" >
+    <avatar></avatar>
+</div>
+<div id="div2" ng-init="name='zfpx'">
+  {{name}}
+</div>
+</body>
+
+<script src="../angular.js"></script>
+<script>
+    angular.module('zfModel',[]);
+
+    angular.module('zfModel').directive('avatar',function(){
+        return {
+            template:'<img src="http://img.sootuu.com/vector/200801/072/0556.jpg"/>'
+        }
+    })
+
+    angular.element(document).ready(function(){
+        //angular.bootstrap(document.querySelector("#rootDiv"),['ng','zfModel']);
+        var injector = angular.injector(["ng","zfModel"]);
+        var rootScope = injector.get('$rootScope');
+        var compile = injector.get('$compile');
+        compile(document.getElementById('div2'))(rootScope);
+    });
+
+
+</script>
+</html>

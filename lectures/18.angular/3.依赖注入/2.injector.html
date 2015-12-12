@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="logger"></div>
+</body>
+
+<script src="../angular.js"></script>
+<script>
+    angular.module('zfModel',[]);
+
+    angular.module('zfModel').provider('zfHello',function(){
+        this.$get = function(){
+            return "hello world";
+        }
+    });
+//
+    angular.element(document).ready(function(){
+        var injector = angular.injector(['zfModel']);
+   // new function().$get();
+       /* injector.invoke(function(zfHello,$log){
+            angular.element(document.querySelector("#logger")).text(zfHello);
+        });*/
+        angular.element(document.querySelector("#logger"))
+                .text(injector.get('zfHello'));
+    });
+</script>
+</html>

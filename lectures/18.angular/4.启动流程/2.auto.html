@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div  ng-app="zfModel">
+    <avatar></avatar>
+</div>
+<div id="rootDiv" ng-app="zfModel">
+    <avatar></avatar>
+</div>
+</body>
+
+<script src="../angular.js"></script>
+<script>
+    angular.module('zfModel',[]);
+
+    angular.module('zfModel').directive('avatar',function(){
+        return {
+            template:'<img src="http://img.sootuu.com/vector/200801/072/0556.jpg"/>'
+        }
+    })
+
+    angular.element(document).ready(function(){
+        angular.bootstrap(document.querySelector("#rootDiv"),['ng','zfModel']);
+    });
+
+
+</script>
+</html>

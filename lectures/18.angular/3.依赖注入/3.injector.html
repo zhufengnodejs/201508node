@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfModel">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="logger" ng-controller="myCtrl"></div>
+</body>
+
+<script src="../angular.js"></script>
+<script>
+    angular.module('zfModel',[]);
+    angular.module('zfModel').provider('zfHello',function(){
+        this.$get = function(){
+            return "hello world";
+        }
+    });
+
+    //angular.module('zfModel').controller('myCtrl',function(zfHello){
+      /* var injector = angular.element(document.querySelector("#logger"))
+               .injector();
+        var result = injector.annotate(function(server1,server2){
+
+        });
+        alert(result);*/
+   // });
+
+    angular.module('zfModel').controller('myCtrl',['zfHello',function(f){
+            alert(f);
+    }]);
+
+
+</script>
+</html>

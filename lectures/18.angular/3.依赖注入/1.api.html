@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="logger"></div>
+</body>
+
+<script src="../angular.js"></script>
+<script>
+    angular.module('zfModel',[]);
+    angular.module('zfModel').controller('zfCtrl',function(){
+
+    });
+ angular.element(document).ready(function(){
+     var injector = angular.injector(['ng']);
+
+     injector.invoke(function($log){
+         angular.element(document.querySelector("#logger")).text($log.toString());
+     });
+ });
+</script>
+</html>
