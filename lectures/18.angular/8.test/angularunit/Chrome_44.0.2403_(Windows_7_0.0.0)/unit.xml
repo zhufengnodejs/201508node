@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<testsuite name="Chrome 44.0.2403 (Windows 7 0.0.0)" package="unit" timestamp="2015-12-13T09:14:15" id="0" hostname="N7ALX5DWW6HPZRD" tests="4" errors="0" failures="0" time="0.103">
+  <properties>
+    <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.125 Safari/537.36"/>
+  </properties>
+  <testcase name="正确的title" time="0.044" classname="Chrome_44_0_2403_(Windows_7_0_0_0).unit.HomeCtrl"/>
+  <testcase name="指令内容是否进行了真正的替换" time="0.038" classname="Chrome_44_0_2403_(Windows_7_0_0_0).unit.HomeCtrl"/>
+  <testcase name="add bigger" time="0.005" classname="Chrome_44_0_2403_(Windows_7_0_0_0).unit.测试过滤器"/>
+  <testcase name="应该返回2个用户" time="0.016" classname="Chrome_44_0_2403_(Windows_7_0_0_0).unit.测试http"/>
+  <system-out>
+    <![CDATA[Chrome 44.0.2403 (Windows 7 0.0.0) LOG: 'hello'
+
+]]>
+  </system-out>
+  <system-err/>
+</testsuite>
