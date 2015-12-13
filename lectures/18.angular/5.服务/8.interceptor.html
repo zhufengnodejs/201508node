@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="remoteModule">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-controller="RemoteCtrl">
+
+</body>
+<script src="../angular.js"></script>
+<script>
+    /**
+     * 拦截器
+     * $http 服务
+     */
+    angular.module('remoteModule',[]);
+    angular.module('remoteModule').controller('RemoteCtrl',function($http){
+        $http.get('books.json1').success(function(){
+            console.log('success');
+        }).error(function(data,status,headers,config){
+            console.log('error');
+        });
+    });
+    angular.module('remoteModule').config(function($httpProvider){
+        $httpProvider.defaults.headers.common['name'] = 'zfpx';
+    });
+    angular.module('remoteModule').factory('myInterceptor',function(){
+        var interceptor = {
+            "request":function(config){
+                console.log('request');
+                console.log(config);
+                return config;//需要返回一个config或者promise
+            },
+            "response":function(response){
+                console.log(response);
+                return response;//返回原始响应
+            },
+            "requestError":function(){
+                console.log('requestError');
+            },
+            "responseError":function(rejection){
+                console.log(rejection);
+                switch(rejection.status){
+                    case 401:
+                        console.log('auth:needlogin');
+
+                    case 403:
+                        console.log('auth:forbidden');
+                    case 404:
+                        console.log('auth:notfound');
+                    case 500:
+                        console.log('server:error');
+                }
+                return rejection;
+            }
+        }
+        return interceptor;
+    });
+    angular.module('remoteModule').config(function($httpProvider){
+        $httpProvider.interceptors.push("myInterceptor");
+    });
+</script>
+</html>

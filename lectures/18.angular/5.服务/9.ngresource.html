@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="calcuModel">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-controller="sayCtrl">
+<div ng-repeat="phone in phones">
+    {{name}}
+</div>
+{{phone}}
+</body>
+<script src="/angular.js"></script>
+<script src="/angular-resource.js"></script>
+<script>
+    angular.module('calcuModel',['ngResource']);
+    angular.module('calcuModel').controller('sayCtrl',function($scope,User){
+        var phone = User.get({uid:1});
+        $scope.phones = User.query();
+        $scope.phone = User.get({uid:1});
+        User.update({uid:10},{"name":"zhangsan","age":10});
+    });
+    angular.module('calcuModel').factory('User',function($resource){
+       return  $resource('http://localhost:8000/user/:uid',{
+           uid:'@uid'
+       },{
+           update:{ //增加一个update 方法，向服务器发起PUT请求
+               method:'PUT'
+           }
+       });
+        /**
+         * get 获取一个资源 返回一个对象
+         * query 查询一个资源  返回是一个数组
+         * save 发起post请求，表示新增加一个资源
+         * delete 发起delete请求，表示删除一个资源
+         * remove
+         *
+         * 查看所有用户 /user 返回所有的用户
+         查看某个用户  get /user/1
+         修改某个用户 put /user/1
+         删除某个用户 delete /user/1
+         增加某个用户 post /user/1
+         */
+    });
+</script>
+</html>
