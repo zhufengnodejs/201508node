@@ -5,36 +5,36 @@
     <title>Title</title>
 </head>
 <body>
-<div ng-controller="MyCtrl">
-    <input type="text" ng-model="keyword">
-    <button ng-click="search()">搜索</button>
+<div >
+    <input type="text" id="keyword">
+    <button onclick="search()">搜索</button>
     <ul id="content">
-        <li ng-repeat="result in results">{{result}}</li>
+
     </ul>
 </div>
-<div id="newResult"></div>
+
 </body>
-<script src="../angular.js"></script>
+
 <script>
     function show(data){
-        var results = data.s;
-        var ele = angular.element(document.querySelector("#content"));
-        var scope = ele.scope();
-        var injector = ele.injector();
-        results = results.map(function(item){
-            return injector.get('uppercaseFilter')(item);
+        var res = data.s;
+        var ul = document.getElementById('content');
+        ul.innerHTML="";
+
+        res.forEach(function(item){
+            var ele = document.createElement('li');
+            ele.innerHTML = item;
+            ul.appendChild(ele);
         });
-        var template = '<ul id="content"> <li ng-repeat="result in results">{{result}}</li> </ul>';
-        var ele2 = angular.element(template);
-        var $compile = injector.get('$compile');
-        var last = $compile(ele2)(scope);
-        document.querySelector("#newResult").appendChild(last[0]);
-        scope.results  = results;
     }
-    angular.module('calcuModel',[]).controller('MyCtrl',function($scope,$http){
-        $scope.search = function(){
-            $http.jsonp('http://suggestion.baidu.com/su?wd='+$scope.keyword+'&cb=show');
-        }
-    });
+
+ function search(){
+     var keyword = document.getElementById('keyword').value;
+     var url = 'http://suggestion.baidu.com/su?wd='+keyword+'&cb=show';
+     var script = document.createElement('script');
+     script.src = url;
+      document.body.appendChild(script);
+
+ }
 </script>
 </html>
