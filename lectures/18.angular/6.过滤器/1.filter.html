@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="calcuModel">
+<head>
+    <meta charset="UTF-8">
+    <title>filter</title>
+</head>
+<body>
+<div ng-controller="MyCtrl">
+   {{total | number:2 | currency}}
+   {{filterTotal}}
+</div>
+</body>
+<script src="../angular.js"></script>
+<script>
+
+    angular.module('calcuModel',[]).controller('MyCtrl',function($scope,$http,numberFilter,currencyFilter){
+        $scope.total = 123.123;
+        $scope.filterTotal = currencyFilter(numberFilter($scope.total,2));
+    });
+</script>
+</html>

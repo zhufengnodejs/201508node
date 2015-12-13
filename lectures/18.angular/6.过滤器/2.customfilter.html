@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="calcuModel">
+<head>
+    <meta charset="UTF-8">
+    <title>filter</title>
+</head>
+<body>
+<div ng-controller="MyCtrl">
+   {{total | number:2 | currency}}
+   {{filterTotal}}
+    {{total | numberCurrency}}
+    {{'abcdef' | upperSome:3}}
+    {{uid|toname}}
+</div>
+</body>
+<script src="../angular.js"></script>
+<script>
+
+    angular.module('calcuModel',[]).controller('MyCtrl',function($scope,$http,numberFilter,currencyFilter){
+        $scope.total = 123.123;
+        $scope.filterTotal = currencyFilter(numberFilter($scope.total,2));
+    });
+    angular.module('calcuModel').filter('numberCurrency',function(numberFilter,currencyFilter){
+        return function(input,length){
+            return currencyFilter(numberFilter(input,length));
+        }
+    });
+
+    angular.module('calcuModel').filter('upperSome',function(){
+        return function(input,length){
+           return input.slice(0,length).toUpperCase()+input.slice(length);
+
+        }
+    });
+</script>
+</html>

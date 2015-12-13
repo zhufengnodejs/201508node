@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="calcuModel">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-controller="MyCtrl">
+    <input type="text" ng-model="keyword">
+    <button ng-click="search()">搜索</button>
+    <ul id="content">
+        <li ng-repeat="result in results">{{result}}</li>
+    </ul>
+</div>
+</body>
+<script src="../angular.js"></script>
+<script>
+    function show(data){
+        var results = data.s;
+        var scope = angular.element(document.querySelector("#content")).scope();
+        console.log(scope);
+        scope.results  = results;
+    }
+    angular.module('calcuModel',[]).controller('MyCtrl',function($scope,$http){
+        $scope.search = function(){
+            $http.jsonp('http://suggestion.baidu.com/su?wd='+$scope.keyword+'&cb=show');
+        }
+    });
+</script>
+</html>
