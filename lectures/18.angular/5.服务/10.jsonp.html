@@ -17,8 +17,13 @@
 <script>
     function show(data){
         var results = data.s;
-        var scope = angular.element(document.querySelector("#content")).scope();
-        console.log(scope);
+        var ele = angular.element(document.querySelector("#content"));
+        var scope = ele.scope();
+        var injector = ele.injector();
+        results = results.map(function(item){
+            return injector.get('uppercaseFilter')(item);
+        });
+        console.log(results);
         scope.results  = results;
     }
     angular.module('calcuModel',[]).controller('MyCtrl',function($scope,$http){

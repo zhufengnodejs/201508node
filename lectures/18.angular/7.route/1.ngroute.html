@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="routeAPP">
+<head>
+    <meta charset="UTF-8">
+    <title>filter</title>
+    <link rel="stylesheet" href="../bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#/">首页</a></li>
+    <li role="presentation"><a href="#/user">用户管理</a></li>
+</ul>
+<div ng-view class="page {{pageClass}}"></div>
+<div class="page-footer">
+    <h5>联系我们 <small>国风美唐</small></h5>
+</div>
+</body>
+<script src="../angular.js"></script>
+<script src="../angular-route.js"></script>
+<script src="../angular-animate.js"></script>
+
+<script>
+    var app = angular.module('routeAPP',['ngRoute','ngAnimate']);
+     app.config(function($routeProvider){
+         $routeProvider.when('/',{
+             templateUrl:'tmpl/home.html',
+             controller:'HomeCtrl'
+         }).when('/user',{
+             templateUrl:'tmpl/user.html',
+             controller:function($scope){
+                 $scope.title = '用户';
+                 $scope.pageClass = 'user';
+             }
+         }).otherwise({
+             redirectTo:'/'
+         });
+     });
+    app.controller('HomeCtrl',function($scope){
+        $scope.title = '首页';
+        $scope.pageClass = 'home';
+    });
+</script>
+</html>

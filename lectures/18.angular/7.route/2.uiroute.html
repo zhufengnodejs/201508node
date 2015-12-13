@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="routeAPP">
+<head>
+    <meta charset="UTF-8">
+    <title>filter</title>
+    <link rel="stylesheet" href="../bootstrap.css">
+</head>
+<body>
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a ui-sref="home">首页</a></li>
+    <li role="presentation"><a ui-sref="user">用户管理</a></li>
+    <li role="presentation"><a ui-sref="profile">个人信息</a></li>
+    <li role="presentation"><a ui-sref="loading">加载页</a></li>
+</ul>
+<div ui-view></div>
+<div class="page-footer">
+    <h5>联系我们 <small>国风美唐</small></h5>
+</div>
+</body>
+<script src="../angular.js"></script>
+<script src="../angular-route.js"></script>
+<script src="../angular-ui-router.js"></script>
+
+<script>
+    var app = angular.module('routeAPP',['ui.router']);
+    app.config(function($stateProvider){
+        $stateProvider.state('home',{
+            templateUrl:'home.html',
+            url:'/home',
+            controller:'HomeCtrl'
+        }).state('user',{
+            templateUrl:'user.html',
+            url:'/user',
+            controller:'UserCtrl'
+        }).state('user.list',{
+            templateUrl:'list.html',
+            url:'/list',
+            controller:'ListCtrl'
+        }).state('user.add',{
+            templateUrl:'add.html',
+            url:'/add',
+            controller:'AddCtrl'
+        }).state('user.look',{
+            templateUrl:'look.html',
+            url:'/look/:id',
+            controller:'LookCtrl',
+            //用来异步的数据调用，返回一个promise
+            resolve:{
+                name:function($q,$stateParams){
+                    var defer = $q.defer();
+                    setTimeout(function(){
+                        var id = $stateParams.id;
+                        defer.resolve("张三的名字");//  成功
+                    },3000);
+                    return defer.promise;
+                }
+            }
+        }).state('profile',{
+            url:'/profile',
+            views:{
+                "":{
+                    templateUrl:'profile.html'
+                },
+                "name@profile":{
+                    template:'张三'
+                },"age@profile":{
+                    template:'100'
+                }
+            }
+        });
+    });
+    app.controller('HomeCtrl',function($scope){
+        $scope.title = '首页';
+    });
+    app.controller('UserCtrl',function($scope){
+        $scope.title = '用户管理';
+    });
+    app.controller('ListCtrl',function($scope){
+        $scope.title = "用户列表";
+    });
+    app.controller('AddCtrl',function($scope){
+        $scope.title = '添加用户';
+    });
+    app.controller('LookCtrl',function($scope,$stateParams,name){
+        $scope.title = '查看用户';
+        $scope.name = name;
+    });
+</script>
+</html>
