@@ -10,4 +10,4 @@
             expect($scope.title == '珠峰培训').toBeTruthy();
         }));
     });
-});
+})();
