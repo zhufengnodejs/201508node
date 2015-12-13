@@ -6,14 +6,16 @@
     <link rel="stylesheet" href="../bootstrap.css">
 </head>
 <body>
+
 <ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a ui-sref="home">首页</a></li>
-    <li role="presentation"><a ui-sref="user">用户管理</a></li>
-    <li role="presentation"><a ui-sref="profile">个人信息</a></li>
-    <li role="presentation"><a ui-sref="loading">加载页</a></li>
+    <li role="presentation"  ng-class="{active:'home' == current_state}"><a ui-sref="home">首页</a></li>
+    <li role="presentation" ng-class="{active:current_state.name.indexOf('user')==0}"><a ui-sref="user">用户管理</a></li>
+    <li role="presentation" ng-class="{active:'profile' == current_state}"><a ui-sref="profile">个人信息</a></li>
+    <li role="presentation" ng-class="{active:'loading' == current_state}"><a ui-sref="loading">加载页</a></li>
 </ul>
 <div ui-view></div>
 <div class="page-footer">
+    {{current_state.name.indexOf('user')==0}}
     <h5>联系我们 <small>国风美唐</small></h5>
 </div>
 </body>
@@ -23,6 +25,20 @@
 
 <script>
     var app = angular.module('routeAPP',['ui.router']);
+    app.run(function($rootScope,$state){
+        $rootScope.$on('$stateChangeStart',function(event,toState,toParams,fromState,fromParams){
+            if(toState.is_login){
+                 //假如没有登陆
+                var isLogin = false;
+                if(!isLogin){
+                    $state.go('home');// 切换到首页
+                    event.preventDefault();//阻止默认事件
+                    //return ;
+                }
+            }
+            $rootScope.current_state = toState;
+        });
+    });
     app.config(function($stateProvider){
         $stateProvider.state('home',{
             templateUrl:'home.html',
@@ -35,11 +51,13 @@
         }).state('user.list',{
             templateUrl:'list.html',
             url:'/list',
-            controller:'ListCtrl'
+            controller:'ListCtrl',
+            is_login:true
         }).state('user.add',{
             templateUrl:'add.html',
             url:'/add',
-            controller:'AddCtrl'
+            controller:'AddCtrl',
+            is_login:true //切换到此状态需要判断是否登陆
         }).state('user.look',{
             templateUrl:'look.html',
             url:'/look/:id',
