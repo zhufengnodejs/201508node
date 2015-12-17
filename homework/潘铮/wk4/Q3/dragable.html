@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="border">
+<head>
+    <meta charset="UTF-8">
+    <title>drag</title>
+    <style>
+        div{
+            width:100px;
+            height:100px;
+            background-color: red;
+            position:absolute;
+        }
+    </style>
+</head>
+<body>
+<h2>用angular.js实现可拖拽div块，</h2>
+<div my-drag >
+
+</div>
+</body>
+<script src="../jquery.js"></script>
+<script src="../angular.js"></script>
+<script>
+    angular.module('border',[]).directive('myDrag',function(){
+        return {
+            link:function(scope,element,attr){
+                var disx = 0;
+                var disy = 0;
+                var mouseEvent = 'release';
+                var self;
+                element.on('mousedown',function(eve){
+                    self = this;
+                    disx = eve.pageX - angular.element(this).offset().left;//鼠标针对边框 的左偏移量
+                    disy = eve.pageY - angular.element(this).offset().top;//鼠标针对边框 的上偏移量
+                    mouseEvent = 'down'
+
+                });
+
+                angular.element(document).on('mousemove',function(eve){
+                    if(mouseEvent == 'down'){
+                        angular.element(self).css('left',eve.pageX - disx);
+                        angular.element(self).css('top',eve.pageY - disy);
+                    }
+
+                });
+
+                angular.element(document).on('mouseup',function(){
+                    if(mouseEvent == 'down'){
+                        mouseEvent = 'release';
+                    }
+                });
+            }
+        }
+    });
+</script>
+</html>

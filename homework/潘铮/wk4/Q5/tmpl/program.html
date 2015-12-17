@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-md-2">
+        <ul class="nav nav-pills nav-stacked">
+            <li role="presentation" ng-class="{active:'program.frontend' == current_state}"><a ui-sref="program.frontend">前端程序员</a></li>
+            <li role="presentation" ng-class="{active:'program.backend' == current_state}"><a ui-sref="program.backend">后端程序员</a></li>
+            <li role="presentation" ng-class="{active:'program.data' == current_state}"><a ui-sref="program.data">数据程序员</a></li>
+            <li role="presentation" ng-class="{active:'program.fullstack' == current_state}"><a ui-sref="program.fullstack">全栈程序员</a></li>
+        </ul>
+    </div>
+    <div class="col-md-10">
+        <ui-view></ui-view>
+    </div>
+</div>
+
