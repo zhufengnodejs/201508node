@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpx">
+<head>
+    <meta charset="UTF-8">
+    <title>tabs</title>
+    <link rel="stylesheet" href="../bootstrap.css">
+    <style>
+        .bodyWrap{
+            width:400px;
+            height:300px;
+            border: 1px solid black;
+            margin-top: 20px;
+        }
+        .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+            color: #555555;
+            background-color: yellow;
+        }
+        .uiview{
+            width:100%;
+            height:80%;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+<h2>用angular.js实现选项卡的例子</h2>
+<div class="bodyWrap container">
+    <ul class="nav nav-tabs">
+        <li role="presentation"  ng-class="{active:'current' == current_state.name}"><a ui-sref="current">时事</a></li>
+        <li role="presentation" ng-class="{active:'sports'==current_state.name}"><a ui-sref="sports">体育</a></li>
+        <li role="presentation" ng-class="{active:'news' == current_state.name}"><a ui-sref="news">新闻</a></li>
+    </ul>
+    <div ui-view class="uiview"></div>
+</div>
+
+</body>
+<script src="../angular.js"></script>
+<script src="../angular-ui-router.js"></script>
+<script>
+    var app = angular.module('zfpx', ['ui.router']);
+
+    app.run(function($rootScope,$state){
+        $rootScope.$on('$stateChangeStart',function(event,toState,toParams,fromState,fromParams){
+            $rootScope.current_state = toState;
+            console.log($rootScope.current_state)
+        });
+    });
+
+    app.config(function($stateProvider){
+        $stateProvider.state('current',{
+            templateUrl:'tmpl/current.html',
+            url:'/current'
+        }).state('sports',{
+            templateUrl:'tmpl/sports.html',
+            url:'/sports'
+        }).state('news',{
+            templateUrl:'tmpl/news.html',
+            url:'/news'
+        })
+    });
+</script>
+</html>

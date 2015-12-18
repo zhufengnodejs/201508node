@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="cartModule">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../bootstrap.css">
+    <title>cart</title>
+</head>
+<body>
+<div class="container" ng-controller="cartCtrl">
+    <h2>用angular.js实现一个管理购物车的例子。</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>商品名称</th>
+            <th>属性</th>
+            <th>市场价</th>
+            <th>本店价</th>
+            <th>购买数量</th>
+            <th>小计</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in items track by $index">
+            <td><img ng-src="{{item.pic}}"><br/>{{item.name}}</td>
+            <td>{{item.desc}}</td>
+            <td>{{item.price}}</td>
+            <td>{{item.special}}</td>
+            <td><input type="text" ng-model="item.qty"></td>
+            <td>{{item.special*item.qty}}</td>
+            <td><button ng-click="deleteItem(item)">删除</button></td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+        <p>购物金额小计：￥{{totalSpePrice}} 比市场价￥{{totalOriPrice}}节省了{{totalOriPrice-totalSpePrice}}
+            ({{((totalOriPrice-totalSpePrice)/totalOriPrice)*100 | number:2}}%)</p>
+    </div>
+</div>
+</body>
+<script src="../angular.js"></script>
+<script src="../jquery.js"></script>
+<script>
+    var app = angular.module('cartModule', []);
+    app.controller('cartCtrl', function($scope) {
+        $scope.items = [
+            {id: 0, name: "二锅头", desc: "宋徽宗御赐二锅头", pic: "imgs/bottle.png", price: 100, special: 70, qty: 1},
+            {id: 0, name: "耗子药", desc: "一瓶放到一村的耗子", pic: "imgs/my.png", price: 1000, special: 600, qty: 1},
+            {id: 0, name: "抓蜻蜓的网", desc: "", pic: "imgs/net.png", price: 500, special: 480, qty: 1}
+        ];
+
+        function getAllPrice(){
+            $scope.totalOriPrice = 0;
+            $scope.totalSpePrice = 0;
+
+            angular.forEach($scope.items, function(item){
+                $scope.totalOriPrice += item.price*item.qty;
+                $scope.totalSpePrice += item.special*item.qty;
+            });
+            console.log($scope.totalOriPrice, $scope.totalSpePrice);
+        }
+
+        getAllPrice();
+        $scope.$watch("items", function(){
+            console.log("发生变化了");
+            getAllPrice();
+        }, true);
+
+        $scope.deleteItem = function (item) {
+            var index = $scope.items.indexOf(item);
+            $scope.items.splice(index, 1);
+            console.log($scope.items)
+            getAllPrice()
+        };
+    })
+</script>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpx">
+<head>
+    <meta charset="UTF-8">
+    <title>filter</title>
+</head>
+<body ng-controller="zfCtrl">
+<h2>用angular.js实现一个自定义过滤器</h2>
+<div>
+    <h2>{{name|hehe}}</h2>
+</div>
+</body>
+<script src="../angular.js"></script>
+<script>
+    var app = angular.module('zfpx', []);
+    app.controller('zfCtrl', function($scope){
+        $scope.name = "张三";
+    });
+    app.filter('hehe',function() {
+        return function (input) {
+            console.log(input)
+            return input + ' 呵呵';
+        }
+    })
+</script>
+</html>
