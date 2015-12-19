@@ -5,17 +5,23 @@
     <title>socket.io</title>
 </head>
 <body>
-
+  <button onclick="chat()">发言</button>
 </body>
 <script src="/socket.io/socket.io.js"></script>
 <script>
     window.onload = function(){
-        var socket = io.connect('http://localhost');
+        var socket = io.connect('http://192.168.1.101');
+
         socket.on('connect',function(){
             socket.send('我是客户端');
-            socket.emit('message','我是客户端');
-            socket.emit('warning','我是客户端');
         });
+        socket.on('nickname',function(){
+            socket.emit('nickname','张仁阳');
+        });
+
+        window.chat = function(){
+            socket.send(new Date().toString());
+        }
         socket.on('message',function(msg){
             console.log(msg);
         });

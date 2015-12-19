@@ -10,15 +10,19 @@ app.get("*",function(req,res){
 });
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
+var users = [];
 io.on('connection',function(socket){
-    socket.emit('message','欢迎光临服务器');
+    var user;
+    console.log(users);
+    socket.emit('nickname','请输入呢称:');
     //socket.send('欢迎光临服务器');
     socket.on('message',function(msg){
-         console.log(msg);
-         socket.send('确认:'+msg);
+        //广播给除了自己之外的所有有人
+        socket.broadcast.emit('message', user+":"+msg);
     });
-    socket.on('warning',function(msg){
-        console.error(msg);
+    socket.on('nickname',function(nickname){
+        user = nickname;
+        users.push(nickname);
     });
 });
 server.listen(80);

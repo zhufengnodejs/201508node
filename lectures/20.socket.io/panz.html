@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>socket.io</title>
+</head>
+<body>
+<input type="text" value="" id="username">
+<button onclick="sendMsg()">发送</button>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    //window.onload = function(){
+        var sendMsg = function(){
+            var socket = io.connect('http://localhost');
+            socket.on('connect',function(){
+                socket.send('用户名:'+document.querySelector('#username').value);
+                //socket.emit('message','我是客户端');
+                //socket.emit('warning','我是客户端');
+            });
+            socket.on('message',function(msg){
+                console.log(msg);
+            });
+        }
+
+    //}
+</script>
+</html>
