@@ -5,19 +5,23 @@ app.use(function(req,res,next){
     console.log(req.url);
     next();
 });
-app.get("*",function(req,res){
+app.use(express.static(__dirname));
+/*app.get("*",function(req,res){
     res.sendFile(path.join(__dirname,'room.html'));
-});
+});*/
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
-
+var messages = [];
 io.on('connection',function(socket){
     var currentRoom ;
     socket.on('message',function(msg){
+        messages.push(msg);
         if(currentRoom)
-            socket.broadcast.to(currentRoom).emit('message', 'nice game');
+            io.sockets.in(currentRoom).emit('message', new Buffer("hello"));
+            //socket.broadcast.to(currentRoom).emit('message', msg);
         else
-            socket.broadcast.emit('message', 'nice game');
+            io.sockets.emit('message',  new Buffer("hello"));
+            //socket.broadcast.emit('message', msg);
     });
 
     socket.on('join',function(room){
