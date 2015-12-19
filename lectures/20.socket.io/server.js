@@ -18,10 +18,13 @@ io.on('connection',function(socket){
     //socket.send('欢迎光临服务器');
     socket.on('message',function(msg){
         //广播给除了自己之外的所有有人
+        console.log('广播',user+":"+msg);
         socket.broadcast.emit('message', user+":"+msg);
     });
     socket.on('nickname',function(nickname){
-        user = nickname;
+        if(!user)
+           user = nickname;
+        console.log('user',user);
         users.push(nickname);
     });
 });

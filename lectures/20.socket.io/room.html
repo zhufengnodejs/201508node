@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>socket.io</title>
+</head>
+<body>
+  <button onclick="join('firefox')">firefox</button>
+  <button onclick="join('chrome')">chrome</button>
+  <button onclick="talk()">发言</button>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    window.onload = function(){
+        var socket = io.connect('http://192.168.1.101');
+
+        window.join = function(room){
+            socket.emit('join',room);
+        }
+        window.talk = function(){
+            socket.send('张仁阳');
+        }
+        socket.on('message',function(msg){
+            console.log(msg);
+        });
+    }
+</script>
+</html>
