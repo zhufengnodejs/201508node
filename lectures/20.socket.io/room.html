@@ -21,9 +21,9 @@
             socket.send('张仁阳');
         }
         socket.on('message',function(msg){
-            console.log(ab2str(msg));
+            console.log(toString(msg));
         });
-        function ab2str(buf) {
+        function toString(buf) {
             return String.fromCharCode.apply(null, new Uint8Array(buf));
         }
     }
