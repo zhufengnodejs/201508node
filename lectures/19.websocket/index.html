@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>websocket</title>
+</head>
+<body>
+
+</body>
+<script>
+    var count = 0;
+    var socket = new WebSocket('ws://localhost:8080/');
+    socket.onopen = function(){
+        console.log('connected to server');
+        socket.send('hello server');
+        setInterval(function(){
+            socket.send(count++);
+        },1000);
+    }
+    socket.onmessage = function(event){
+        console.log(event.data);
+    }
+
+</script>
+</html>

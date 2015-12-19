@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>socket.io</title>
+</head>
+<body>
+
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    window.onload = function(){
+        var socket = io.connect('http://localhost');
+        socket.on('connect',function(){
+            socket.send('我是客户端');
+        });
+        socket.on('message',function(msg){
+            console.log(msg);
+        });
+    }
+</script>
+</html>
