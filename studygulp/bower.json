@@ -1,0 +1,21 @@
+{
+  "name": "studygulp",
+  "private": true,
+  "dependencies": {
+    "bootstrap-sass": "~3.3.5",
+    "angular":"*"
+  },
+  "overrides": {
+    "bootstrap-sass": {
+      "main": [
+        "assets/stylesheets/_bootstrap.scss",
+        "assets/fonts/bootstrap/*",
+        "assets/javascripts/bootstrap.js"
+      ]
+    }
+  },
+  "devDependencies": {
+    "chai": "~3.4.2",
+    "mocha": "~2.3.4"
+  }
+}
