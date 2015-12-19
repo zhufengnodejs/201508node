@@ -13,6 +13,8 @@
         var socket = io.connect('http://localhost');
         socket.on('connect',function(){
             socket.send('我是客户端');
+            socket.emit('message','我是客户端');
+            socket.emit('warning','我是客户端');
         });
         socket.on('message',function(msg){
             console.log(msg);

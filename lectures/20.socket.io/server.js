@@ -11,10 +11,14 @@ app.get("*",function(req,res){
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 io.on('connection',function(socket){
-    socket.send('欢迎光临服务器');
+    socket.emit('message','欢迎光临服务器');
+    //socket.send('欢迎光临服务器');
     socket.on('message',function(msg){
          console.log(msg);
          socket.send('确认:'+msg);
+    });
+    socket.on('warning',function(msg){
+        console.error(msg);
     });
 });
 server.listen(80);
