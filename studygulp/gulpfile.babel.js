@@ -25,13 +25,13 @@ gulp.task('styles', () => {
     .pipe(gulp.dest('.tmp/styles'))//输出到目标路径
     .pipe(reload({stream: true}));//自动刷新浏览器
 });
-
+//进行代码检查的
 function lint(files, options) {
   return () => {
-    return gulp.src(files)
-      .pipe(reload({stream: true, once: true}))
+    return gulp.src(files)//得到所有的源文件
+      .pipe(reload({stream: true, once: true}))//重新加载
       .pipe($.eslint(options))
-      .pipe($.eslint.format())
+      .pipe($.eslint.format())//对代码进行检查
       .pipe($.if(!browserSync.active, $.eslint.failAfterError()));
   };
 }
@@ -48,20 +48,23 @@ gulp.task('html', ['styles'], () => {
   const assets = $.useref.assets({searchPath: ['.tmp', 'app', '.']});
 
   return gulp.src('app/*.html')
-    .pipe(assets)
-    .pipe($.if('*.js', $.uglify()))
-    .pipe($.if('*.css', $.minifyCss({compatibility: '*'})))
-    .pipe(assets.restore())
-    .pipe($.useref())
-    .pipe($.if('*.html', $.minifyHtml({conditionals: true, loose: true})))
+    .pipe(assets)//获取里面所有的外链的资源 js css
+    // main.js main.css vendor.js vendor.css
+    .pipe($.if('*.js', $.uglify()))//对JS文件进行压缩
+    .pipe($.if('*.css', $.minifyCss({compatibility: '*'})))//对CSS文件进行压缩
+    .pipe(assets.restore())//恢复原始的资源
+    .pipe($.useref())//修改html里面的引用
+    //conditionals 不移除对IE处理  loose 多个空格的话至少保留一个空格
+    .pipe($.if('*.html', $.minifyHtml({conditionals: true, loose: true})))//
     .pipe(gulp.dest('dist'));
 });
 
 gulp.task('images', () => {
-  return gulp.src('app/images/**/*')
+  return gulp.src('app/images/**/*')//取到所有的图片
+    //cache保证一个图片只压一次
     .pipe($.if($.if.isFile, $.cache($.imagemin({
-      progressive: true,
-      interlaced: true,
+      progressive: true,//渐进式扫描
+      interlaced: true,//隔行描述 先发奇数行，再发偶数行
       // don't remove IDs from SVGs, they are often used
       // as hooks for embedding and styling
       svgoPlugins: [{cleanupIDs: false}]
@@ -115,9 +118,9 @@ gulp.task('serve', ['styles', 'fonts'], () => {
     '.tmp/fonts/**/*'
   ]).on('change', reload);//当这些文件变化时自动重启服务器
 
-  gulp.watch('app/styles/**/*.scss', ['styles']);
-  gulp.watch('app/fonts/**/*', ['fonts']);
-  gulp.watch('bower.json', ['wiredep', 'fonts']);
+  gulp.watch('app/styles/**/*.scss', ['styles']);//当sass变化时编译saas
+  gulp.watch('app/fonts/**/*', ['fonts']);//拷贝字体
+  gulp.watch('bower.json', ['wiredep', 'fonts']);//把bower文件插入index.html
 });
 
 gulp.task('serve:dist', () => {
@@ -151,7 +154,7 @@ gulp.task('serve:test', () => {
 gulp.task('wiredep', () => {
   gulp.src('app/styles/*.scss')
     .pipe(wiredep({
-      ignorePath: /^(\.\.\/)+/
+      ignorePath: /^(\.\.\/)+/ //忽略路径
     }))
     .pipe(gulp.dest('app/styles'));
 
@@ -164,6 +167,7 @@ gulp.task('wiredep', () => {
 });
 
 gulp.task('build', ['lint', 'html', 'images', 'fonts', 'extras'], () => {
+  //统计文件的大小gzip 统计当启用gzip压缩后的大小
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
